@@ -32,7 +32,7 @@ app.post("/", (req, res)=>{
         auth: "Jenil:7408a1fb565943832e2f13be0b43620f-us12"
     }
     const request =https.request(url, options, (response)=>{
-        if(response.statusCode === 200 && response.error_count ===0){
+        if(response.statusCode === 200){
             res.sendFile(__dirname+"/success.html");
         }
         else{
