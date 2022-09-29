@@ -32,15 +32,15 @@ app.post("/", (req, res)=>{
         auth: "Jenil:7408a1fb565943832e2f13be0b43620f-us12"
     }
     const request =https.request(url, options, (response)=>{
-        if(response.statusCode === 200){
-            res.sendFile(__dirname+"/success.html");
-        }
-        else{
-            res.sendFile(__dirname+"/failure.html");
-        }
-
         response.on("data", (data)=>{
-            console.log(JSON.parse(data));
+            var datta= JSON.parse(data);
+            console.log(datta);
+            if(response.statusCode === 200 && datta.error_count===0){
+                res.sendFile(__dirname+"/success.html");
+            }
+            else{
+                res.sendFile(__dirname+"/failure.html");
+            }
         });
     });
     request.write(jsonData);
